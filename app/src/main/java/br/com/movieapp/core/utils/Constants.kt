@@ -1,4 +1,4 @@
-package br.com.movieapp.core.data.remote.utils
+package br.com.movieapp.core.utils
 
 object Constants {
     const val API_KEY = "api_key"
