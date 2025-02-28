@@ -5,6 +5,7 @@ import br.com.movieapp.movie_popular_feature.data.repository.MoviePopularReposit
 import br.com.movieapp.movie_popular_feature.data.source.MoviePopularRemoteDataSourceImpl
 import br.com.movieapp.movie_popular_feature.domain.repository.MoviePopularRepository
 import br.com.movieapp.movie_popular_feature.domain.source.MoviePopularRemoteDataSource
+import br.com.movieapp.movie_popular_feature.domain.usecase.GetPopularMoviesUseCase
 import br.com.movieapp.movie_popular_feature.domain.usecase.GetPopularMoviesUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -18,13 +19,13 @@ object MoviePopularFeatureModule {
 
     @Provides
     @Singleton
-    fun provideMovieDataSource(service: MovieService) = MoviePopularRemoteDataSourceImpl(service)
+    fun provideMovieDataSource(service: MovieService): MoviePopularRemoteDataSource = MoviePopularRemoteDataSourceImpl(service)
 
     @Provides
     @Singleton
-    fun provideMovieRepository(dataSource: MoviePopularRemoteDataSource) = MoviePopularRepositoryImpl(dataSource)
+    fun provideMovieRepository(dataSource: MoviePopularRemoteDataSource): MoviePopularRepository = MoviePopularRepositoryImpl(dataSource)
 
     @Provides
     @Singleton
-    fun provideGetPopularMoviesUseCase(repository: MoviePopularRepository) = GetPopularMoviesUseCaseImpl(repository)
+    fun provideGetPopularMoviesUseCase(repository: MoviePopularRepository): GetPopularMoviesUseCase = GetPopularMoviesUseCaseImpl(repository)
 }

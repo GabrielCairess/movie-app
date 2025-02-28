@@ -8,15 +8,14 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 interface GetPopularMoviesUseCase {
-    suspend operator fun invoke(page: Int): Flow<PagingData<Movie>>
-
+    fun invoke(): Flow<PagingData<Movie>>
 }
 
 class GetPopularMoviesUseCaseImpl @Inject constructor(
     private val repository: MoviePopularRepository
 ) : GetPopularMoviesUseCase {
 
-    override suspend fun invoke(page: Int): Flow<PagingData<Movie>> {
+    override fun invoke(): Flow<PagingData<Movie>> {
         return repository.getPopularMovies(
             pagingConfig = PagingConfig(
                 pageSize = 20,
