@@ -20,7 +20,7 @@ class MoviePagingSource(
         return try {
             val pageNumber = params.key ?: 1
             val movieResponse = remoteDataSource.getPopularMovies(page = pageNumber)
-            val movies = movieResponse.movieResults
+            val movies = movieResponse.results
 
             LoadResult.Page(
                 data = movies.toMovie(),
