@@ -1,6 +1,5 @@
 package br.com.movieapp.core.presentation.navigation
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -12,6 +11,8 @@ import androidx.navigation.navArgument
 import br.com.movieapp.core.utils.Constants
 import br.com.movieapp.movie_detail_feature.presentation.MovieDetailViewModel
 import br.com.movieapp.movie_detail_feature.presentation.MovieDetailsScreen
+import br.com.movieapp.movie_favorite_feature.presentation.MovieFavoriteScreen
+import br.com.movieapp.movie_favorite_feature.presentation.MovieFavoriteViewModel
 import br.com.movieapp.movie_popular_feature.presentation.MoviePopularScreen
 import br.com.movieapp.movie_popular_feature.presentation.MoviePopularViewModel
 import br.com.movieapp.search_movie_feature.presentation.MovieSearchScreen
@@ -54,6 +55,15 @@ fun NavigationGraph(
         }
 
         composable(BottomNavItem.MovieFavorite.route) {
+            val viewModel = hiltViewModel<MovieFavoriteViewModel>()
+            val uiState = viewModel.uiState
+
+            MovieFavoriteScreen(
+                uiState = uiState,
+                navigateToDetail = {
+                    navController.navigate(BottomNavItem.MovieDetails.passMovieId(it))
+                }
+            )
 
         }
 

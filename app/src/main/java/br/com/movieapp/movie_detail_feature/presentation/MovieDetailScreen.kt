@@ -49,7 +49,7 @@ fun MovieDetailsScreen(
                 isLoading = uiState.isLoading,
                 isError = uiState.error ?: "",
                 iconColor = uiState.iconColor,
-                onAddFavourites = {
+                onAddFavorites = {
 
                 }
             )

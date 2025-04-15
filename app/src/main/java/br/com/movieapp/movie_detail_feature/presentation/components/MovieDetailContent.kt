@@ -52,7 +52,7 @@ fun MovieDetailContent(
     isLoading: Boolean,
     isError: String,
     iconColor: Color,
-    onAddFavourites: (Movie) -> Unit,
+    onAddFavorites: (Movie) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -79,7 +79,7 @@ fun MovieDetailContent(
                 IconButton(
                     onClick = {
                         movieDetails?.toMovie()?.let {
-                            onAddFavourites(it)
+                            onAddFavorites(it)
                         }
                     }
                 ) {
@@ -209,6 +209,6 @@ fun MovieDetailsContentPreview() {
         isError = "Error",
         isLoading = false,
         iconColor = Color.Red,
-        onAddFavourites = {}
+        onAddFavorites = {}
     )
 }
