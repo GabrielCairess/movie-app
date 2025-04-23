@@ -9,7 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import br.com.movieapp.core.presentation.navigation.BottomNavigationBar
+import br.com.movieapp.core.presentation.navigation.DetailsScreenNav
 import br.com.movieapp.core.presentation.navigation.NavigationGraph
+import br.com.movieapp.core.presentation.navigation.currentRoute
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -18,7 +20,11 @@ fun MainScreen(
     modifier: Modifier = Modifier
 ) {
     Scaffold(
-        bottomBar = { BottomNavigationBar(navController = navHostController) },
+        bottomBar = {
+            if (currentRoute(navHostController = navHostController) != DetailsScreenNav.DetailsScreen.route) {
+                BottomNavigationBar(navController = navHostController)
+            }
+        },
         content = { paddingValues ->
 
             Box(

@@ -12,7 +12,4 @@ sealed class BottomNavItem(val title: String, val icon: ImageVector, val route: 
     object MoviePopular : BottomNavItem("Filmes Populares", Icons.Default.Movie, "movie_popular_screen")
     object MovieSearch : BottomNavItem("Pesquisar", Icons.Default.Search, "movie_search_screen")
     object MovieFavorite : BottomNavItem("Favoritos", Icons.Default.Favorite, "movie_favorite_screen")
-    object MovieDetails : BottomNavItem("Detalhes", Icons.Default.Details, "movie_details_destination?$MOVIE_DETAIL_ARGUMENT_KEY={${MOVIE_DETAIL_ARGUMENT_KEY}}") {
-        fun passMovieId(movieId: Int) = "movie_details_destination?$MOVIE_DETAIL_ARGUMENT_KEY=$movieId"
-    }
 }

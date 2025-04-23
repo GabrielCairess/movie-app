@@ -34,7 +34,7 @@ fun NavigationGraph(
             MoviePopularScreen(
                 uiState = viewModel.uiState,
                 navigateToDetailMovie = {
-                    navController.navigate(BottomNavItem.MovieDetails.passMovieId(it))
+                    navController.navigate(DetailsScreenNav.DetailsScreen.passMovieId(it))
                 },
                 modifier = modifier
             )
@@ -48,7 +48,7 @@ fun NavigationGraph(
                 onEvent = viewModel::event,
                 onFetch = viewModel::fetch,
                 navigateToDetailMovie = {
-                    navController.navigate(BottomNavItem.MovieDetails.passMovieId(it))
+                    navController.navigate(DetailsScreenNav.DetailsScreen.passMovieId(it))
                 },
                 modifier = modifier
             )
@@ -61,14 +61,14 @@ fun NavigationGraph(
             MovieFavoriteScreen(
                 uiState = uiState,
                 navigateToDetail = {
-                    navController.navigate(BottomNavItem.MovieDetails.passMovieId(it))
+                    navController.navigate(DetailsScreenNav.DetailsScreen.passMovieId(it))
                 }
             )
 
         }
 
         composable(
-            route = BottomNavItem.MovieDetails.route,
+            route = DetailsScreenNav.DetailsScreen.route,
             arguments = listOf(
                 navArgument(Constants.MOVIE_DETAIL_ARGUMENT_KEY) {
                     type = NavType.IntType
@@ -79,15 +79,10 @@ fun NavigationGraph(
             val viewModel = hiltViewModel<MovieDetailViewModel>()
             val uiState = viewModel.uiState
             val onAddFavorite = viewModel::onAddFavorite
-            val checkedFavorite = viewModel::checkedFavorite
-            val getMovieDetail = viewModel::getMovieDetails
 
             MovieDetailsScreen(
-                id = it.arguments?.getInt(Constants.MOVIE_DETAIL_ARGUMENT_KEY),
                 uiState = uiState,
-                getMovieDetails = getMovieDetail,
                 onAddFavorite = onAddFavorite,
-                checkedFavorite = checkedFavorite,
                 modifier = modifier
             )
         }

@@ -2,48 +2,28 @@ package br.com.movieapp.movie_detail_feature.presentation
 
 import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.movieapp.R
 import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.presentation.components.common.MovieAppBar
 import br.com.movieapp.movie_detail_feature.presentation.components.MovieDetailContent
 import br.com.movieapp.movie_detail_feature.presentation.state.MovieDetailState
-import br.com.movieapp.ui.theme.black
-import br.com.movieapp.ui.theme.white
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MovieDetailsScreen(
-    id: Int?,
     uiState: MovieDetailState,
     onAddFavorite: (Movie) -> Unit,
-    checkedFavorite: (MovieDetailEvent.CheckedFavorite) -> Unit,
-    getMovieDetails: (MovieDetailEvent.GetMovieDetails) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
     val pagingMoviesSimilar = uiState.results.collectAsLazyPagingItems()
 
-    LaunchedEffect(key1 = true) {
-        if (id != null) {
-            getMovieDetails(MovieDetailEvent.GetMovieDetails(id))
-            checkedFavorite(MovieDetailEvent.CheckedFavorite(id))
-        }
-    }
-
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = stringResource(R.string.detail_movie), color = white)
-                },
-                backgroundColor = black
-            )
+            MovieAppBar(R.string.detail_movie)
         },
         content = {
             MovieDetailContent(
