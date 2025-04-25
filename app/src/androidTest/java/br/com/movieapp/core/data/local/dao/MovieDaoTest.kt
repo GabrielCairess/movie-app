@@ -91,4 +91,30 @@ class MovieDaoTest {
 
         assertThat(isFavorite).isEqualTo(movie)
     }
+
+    @Test
+    fun test_is_favorite_should_not_return_movie() = runTest {
+        val movieId = 1
+        val movie = MovieEntity(movieId = movieId, title = "Movie 1", imageUrl = "")
+        dao.insertMovie(movie)
+
+        //searching with other movieId
+        val isFavorite = dao.isFavorite(2)
+
+        assertThat(isFavorite).isNotEqualTo(movie)
+    }
+
+    @Test
+    fun test_when_movie_has_updates_should_insert() = runTest {
+        val movie = MovieEntity(movieId = 1, title = "Movie 1", imageUrl = "")
+        dao.insertMovie(movie)
+
+        val updatedMovie = movie.copy(title = "Updated Movie")
+        dao.insertMovie(updatedMovie)
+
+        val retrievedMovies = dao.getMovies().first()
+        assertThat(dao.getMovies().first().size).isEqualTo(1)
+        assertThat(retrievedMovies).contains(updatedMovie)
+    }
+
 }
