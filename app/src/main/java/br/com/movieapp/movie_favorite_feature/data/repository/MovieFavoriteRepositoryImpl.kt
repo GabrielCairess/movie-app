@@ -1,6 +1,6 @@
 package br.com.movieapp.movie_favorite_feature.data.repository
 
-import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.movie_favorite_feature.domain.repository.MovieFavoriteRepository
 import br.com.movieapp.movie_favorite_feature.domain.source.MovieFavoriteLocalData
 import kotlinx.coroutines.flow.Flow

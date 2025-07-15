@@ -1,7 +1,7 @@
 package br.com.movieapp.movie_detail_feature.data.mapper
 
-import br.com.movieapp.core.domain.Movie
-import br.com.movieapp.core.domain.MovieDetails
+import br.com.movieapp.core.domain.model.Movie
+import br.com.movieapp.core.domain.model.MovieDetails
 
 fun MovieDetails.toMovie() = Movie(
     id = id,

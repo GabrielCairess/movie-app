@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.core.presentation.components.common.ErrorScreen
 import br.com.movieapp.core.presentation.components.common.LoadingView
 import br.com.movieapp.movie_popular_feature.presentation.components.MovieItem

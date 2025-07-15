@@ -3,8 +3,8 @@ package br.com.movieapp.movie_detail_feature.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import br.com.movieapp.core.domain.Movie
-import br.com.movieapp.core.domain.MovieDetails
+import br.com.movieapp.core.domain.model.Movie
+import br.com.movieapp.core.domain.model.MovieDetails
 import br.com.movieapp.movie_detail_feature.domain.repository.MovieDetailsRepository
 import br.com.movieapp.movie_detail_feature.domain.source.MovieDetailsRemoteDataSource
 import kotlinx.coroutines.flow.Flow

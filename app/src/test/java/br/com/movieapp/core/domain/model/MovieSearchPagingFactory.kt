@@ -1,27 +1,22 @@
 package br.com.movieapp.core.domain.model
 
-class MovieSearchFactory {
+class MovieSearchPagingFactory {
 
-    fun create(poster: Poster) = when (poster) {
-        Poster.Avengers -> {
+    fun create() = MovieSearchPaging(
+        page = 1,
+        totalPages = 1,
+        totalResults = 2,
+        movieSearches = listOf(
             MovieSearch(
                 id = 1,
                 voteAverage = 7.1,
                 imageUrl = ""
-            )
-        }
-
-        Poster.JohnWick -> {
+            ),
             MovieSearch(
                 id = 2,
                 voteAverage = 10.0,
                 imageUrl = ""
             )
-        }
-    }
-
-    sealed class Poster {
-        object Avengers: Poster()
-        object JohnWick: Poster()
-    }
+        )
+    )
 }

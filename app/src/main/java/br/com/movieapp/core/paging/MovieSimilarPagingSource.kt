@@ -2,7 +2,7 @@ package br.com.movieapp.core.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.movie_detail_feature.domain.source.MovieDetailsRemoteDataSource
 import br.com.movieapp.movie_popular_feature.data.mapper.toMovie
 

@@ -1,6 +1,6 @@
 package br.com.movieapp.movie_detail_feature.presentation
 
-import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.domain.model.Movie
 
 sealed class MovieDetailEvent {
     data class GetMovieDetails(val movieId: Int) : MovieDetailEvent()

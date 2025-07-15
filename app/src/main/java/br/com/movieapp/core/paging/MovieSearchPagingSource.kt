@@ -2,7 +2,7 @@ package br.com.movieapp.core.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import br.com.movieapp.core.domain.MovieSearch
+import br.com.movieapp.core.domain.model.MovieSearch
 import br.com.movieapp.search_movie_feature.data.mapper.toMovieSearch
 import br.com.movieapp.search_movie_feature.domain.source.MovieSearchRemoteDataSource
 
@@ -22,12 +22,13 @@ class MovieSearchPagingSource(
         return try {
             val pageNumber = params.key ?: 1
             val movieSearchResponse = remoteDataSource.getSearchMovie(query, pageNumber)
-            val movies = movieSearchResponse.results
+            val movies = movieSearchResponse.movieSearches
+            val totalPages = movieSearchResponse.totalPages
 
             LoadResult.Page(
-                data = movies.toMovieSearch(),
+                data = movies,
                 prevKey = if (pageNumber == 1) null else pageNumber - LIMIT,
-                nextKey = if (movies.isEmpty()) null else pageNumber + LIMIT
+                nextKey = if (pageNumber == totalPages) null else pageNumber + LIMIT
             )
         } catch (e: Exception) {
             return LoadResult.Error(e)

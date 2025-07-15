@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.core.utils.Constants
 import br.com.movieapp.core.utils.ResultData
 import br.com.movieapp.core.utils.UtilFunctions

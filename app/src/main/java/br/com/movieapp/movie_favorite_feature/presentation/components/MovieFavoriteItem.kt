@@ -13,19 +13,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.movieapp.R
-import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.core.presentation.components.common.AsyncImageUrl
 import br.com.movieapp.ui.theme.black
 import br.com.movieapp.ui.theme.white
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 
 @Composable
 fun MovieFavoriteItem(

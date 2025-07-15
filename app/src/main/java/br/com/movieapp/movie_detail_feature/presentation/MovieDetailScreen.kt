@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.movieapp.R
-import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.core.presentation.components.common.MovieAppBar
 import br.com.movieapp.movie_detail_feature.presentation.components.MovieDetailContent
 import br.com.movieapp.movie_detail_feature.presentation.state.MovieDetailState

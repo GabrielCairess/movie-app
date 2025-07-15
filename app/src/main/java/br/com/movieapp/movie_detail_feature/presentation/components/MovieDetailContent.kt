@@ -35,8 +35,8 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.movieapp.R
-import br.com.movieapp.core.domain.Movie
-import br.com.movieapp.core.domain.MovieDetails
+import br.com.movieapp.core.domain.model.Movie
+import br.com.movieapp.core.domain.model.MovieDetails
 import br.com.movieapp.movie_detail_feature.data.mapper.toMovie
 import br.com.movieapp.ui.theme.black
 import br.com.movieapp.ui.theme.white

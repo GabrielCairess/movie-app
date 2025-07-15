@@ -2,8 +2,8 @@ package br.com.movieapp.movie_detail_feature.domain.usecase
 
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import br.com.movieapp.core.domain.Movie
-import br.com.movieapp.core.domain.MovieDetails
+import br.com.movieapp.core.domain.model.Movie
+import br.com.movieapp.core.domain.model.MovieDetails
 import br.com.movieapp.core.utils.ResultData
 import br.com.movieapp.movie_detail_feature.domain.repository.MovieDetailsRepository
 import kotlinx.coroutines.Dispatchers

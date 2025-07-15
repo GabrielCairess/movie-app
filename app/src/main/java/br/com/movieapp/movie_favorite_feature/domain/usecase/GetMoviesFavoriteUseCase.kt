@@ -1,12 +1,8 @@
 package br.com.movieapp.movie_favorite_feature.domain.usecase
 
-import br.com.movieapp.core.domain.Movie
-import br.com.movieapp.core.utils.ResultData
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.movie_favorite_feature.domain.repository.MovieFavoriteRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 interface GetMoviesFavoriteUseCase {

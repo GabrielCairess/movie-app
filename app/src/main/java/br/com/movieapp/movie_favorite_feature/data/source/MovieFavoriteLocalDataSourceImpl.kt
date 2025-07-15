@@ -1,7 +1,7 @@
 package br.com.movieapp.movie_favorite_feature.data.source
 
 import br.com.movieapp.core.data.local.dao.MovieDao
-import br.com.movieapp.core.domain.Movie
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.movie_favorite_feature.data.mapper.toMovieEntity
 import br.com.movieapp.movie_favorite_feature.data.mapper.toMovies
 import br.com.movieapp.movie_favorite_feature.domain.source.MovieFavoriteLocalData

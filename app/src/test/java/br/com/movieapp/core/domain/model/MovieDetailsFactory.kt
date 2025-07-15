@@ -1,7 +1,6 @@
 package br.com.movieapp.core.domain.model
 
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
-import br.com.movieapp.core.domain.MovieDetails
 
 class MovieDetailsFactory {
 
