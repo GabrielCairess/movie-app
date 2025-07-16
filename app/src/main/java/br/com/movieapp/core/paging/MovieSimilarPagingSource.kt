@@ -22,12 +22,13 @@ class MovieSimilarPagingSource(
         return try {
             val pageNumber = params.key ?: 1
             val response = remoteDataSource.getMoviesSimilar(pageNumber, movieId)
-            val movies = response.results
+            val movies = response.movies
+            val totalPages = response.totalPages
 
             LoadResult.Page(
-                data = movies.toMovie(),
+                data = movies,
                 prevKey = if (pageNumber == 1) null else pageNumber - MovieSearchPagingSource.LIMIT,
-                nextKey = if (movies.isEmpty()) null else pageNumber + MovieSearchPagingSource.LIMIT
+                nextKey = if (totalPages == pageNumber) null else pageNumber + MovieSearchPagingSource.LIMIT
             )
         } catch (e: Exception) {
             return LoadResult.Error(e)
