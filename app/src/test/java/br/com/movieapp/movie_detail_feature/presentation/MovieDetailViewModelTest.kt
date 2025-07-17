@@ -76,11 +76,7 @@ class MovieDetailViewModelTest {
     @Test
     fun `must notify uiState with success when get movies similar and movie details return success`() = runTest {
         whenever(getMovieDetailsUseCase.invoke(any())).thenReturn(
-            flowOf(
-                ResultData.Success(
-                    flowOf(pagingData) to movieDetailsFactory
-                )
-            )
+            ResultData.Success(flowOf(pagingData) to movieDetailsFactory)
         )
 
         whenever(isMovieFavoritesUseCase.invoke(any())).thenReturn(
@@ -88,11 +84,16 @@ class MovieDetailViewModelTest {
         )
 
         val argumentCaptor = argumentCaptor<GetMovieDetailsUseCase.Params>()
+        val checkedArgumentCaptor = argumentCaptor<IsMovieFavoriteUseCase.Params>()
         
         viewModel.uiState.isLoading
 
         verify(getMovieDetailsUseCase).invoke(argumentCaptor.capture())
         assertThat(argumentCaptor.firstValue.movieId).isEqualTo(argumentCaptor.firstValue.movieId)
+
+        verify(isMovieFavoritesUseCase).invoke(checkedArgumentCaptor.capture())
+        assertThat(checkedArgumentCaptor.firstValue.movieId).isEqualTo(movie.id)
+
         val movieDetails = viewModel.uiState.movieDetails
         val results = viewModel.uiState.results
         assertThat(movieDetails).isNotNull()
@@ -105,13 +106,11 @@ class MovieDetailViewModelTest {
         val exception = Exception("Um erro ocorreu!")
 
         whenever(getMovieDetailsUseCase.invoke(any())).thenReturn(
-            flowOf(
-                ResultData.Failure(exception)
-            )
+            ResultData.Failure(exception)
         )
 
         whenever(isMovieFavoritesUseCase.invoke(any())).thenReturn(
-            flowOf(ResultData.Success(true))
+            flowOf(ResultData.Failure(exception))
         )
 
         viewModel.uiState.isLoading
@@ -123,11 +122,7 @@ class MovieDetailViewModelTest {
     @Test
     fun `must call delete favorite and notify of uiState with filled favorite icon when current icon is checked`() = runTest {
         whenever(getMovieDetailsUseCase.invoke(any())).thenReturn(
-            flowOf(
-                ResultData.Success(
-                    flowOf(pagingData) to movieDetailsFactory
-                )
-            )
+            ResultData.Success(flowOf(pagingData) to movieDetailsFactory)
         )
 
         whenever(deleteFavoriteDetailsUseCase.invoke(any())).thenReturn(
@@ -156,11 +151,7 @@ class MovieDetailViewModelTest {
     @Test
     fun `must notify of uiState with filled favorite icon when current icon is unchecked`() = runTest {
         whenever(getMovieDetailsUseCase.invoke(any())).thenReturn(
-            flowOf(
-                ResultData.Success(
-                    flowOf(pagingData) to movieDetailsFactory
-                )
-            )
+            ResultData.Success(flowOf(pagingData) to movieDetailsFactory)
         )
 
         whenever(addMoVieFavoriteUseCase.invoke(any())).thenReturn(
@@ -189,11 +180,7 @@ class MovieDetailViewModelTest {
     @Test
     fun `must notify uiState with bookmark icon filled in if bookmark check returns true`() = runTest {
         whenever(getMovieDetailsUseCase.invoke(any())).thenReturn(
-            flowOf(
-                ResultData.Success(
-                    flowOf(pagingData) to movieDetailsFactory
-                )
-            )
+            ResultData.Success(flowOf(pagingData) to movieDetailsFactory)
         )
 
         whenever(isMovieFavoritesUseCase.invoke(any())).thenReturn(
@@ -214,11 +201,7 @@ class MovieDetailViewModelTest {
     @Test
     fun `must notify uiState with bookmark icon filled in if bookmark check returns false`() = runTest {
         whenever(getMovieDetailsUseCase.invoke(any())).thenReturn(
-            flowOf(
-                ResultData.Success(
-                    flowOf(pagingData) to movieDetailsFactory
-                )
-            )
+            ResultData.Success(flowOf(pagingData) to movieDetailsFactory)
         )
 
         whenever(isMovieFavoritesUseCase.invoke(any())).thenReturn(

@@ -3,6 +3,7 @@ package br.com.movieapp.search_movie_feature.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import br.com.movieapp.core.domain.model.MovieSearch
 import br.com.movieapp.core.paging.MovieSearchPagingSource
 import br.com.movieapp.search_movie_feature.domain.repository.MovieSearchRepository
@@ -14,15 +15,7 @@ class MovieSearchRepositoryImpl @Inject constructor(
     private val remoteDataSource: MovieSearchRemoteDataSource
 ) : MovieSearchRepository {
 
-    override fun getSearchMovies(
-        query: String,
-        pagingConfig: PagingConfig
-    ): Flow<PagingData<MovieSearch>> {
-        return Pager(
-            config = pagingConfig,
-            pagingSourceFactory = {
-                MovieSearchPagingSource(query, remoteDataSource)
-            }
-        ).flow
+    override fun getSearchMovies(query: String): PagingSource<Int, MovieSearch> {
+        return MovieSearchPagingSource(query, remoteDataSource)
     }
 }

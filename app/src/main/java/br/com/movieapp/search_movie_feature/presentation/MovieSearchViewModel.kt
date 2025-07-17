@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import br.com.movieapp.search_movie_feature.domain.usecase.GetMovieSearchUseCase
 import br.com.movieapp.search_movie_feature.presentation.state.MovieSearchState
@@ -21,7 +22,8 @@ class MovieSearchViewModel @Inject constructor(
     fun fetch(query: String = "") {
         val movies = getMovieSearchUseCase.invoke(
             params = GetMovieSearchUseCase.Params(
-                query = query
+                query = query,
+                pagingConfig = pagingConfig()
             )
         ).cachedIn(viewModelScope)
         uiState = uiState.copy(movies = movies)
@@ -34,4 +36,9 @@ class MovieSearchViewModel @Inject constructor(
             }
         }
     }
+
+    private fun pagingConfig() = PagingConfig(
+        pageSize = 20,
+        initialLoadSize = 20
+    )
 }

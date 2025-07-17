@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingConfig
 import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.core.utils.Constants
 import br.com.movieapp.core.utils.ResultData
@@ -64,29 +65,28 @@ class MovieDetailViewModel @Inject constructor(
         when (event) {
             is MovieDetailEvent.GetMovieDetails  -> {
                 viewModelScope.launch {
-                    getMovieDetailsUseCase.invoke(
-                        params = Params(event.movieId)
-                    ).collect { resultData ->
-                        when (resultData) {
-                            is ResultData.Success -> {
-                                uiState = uiState.copy(
-                                    isLoading = false,
-                                    movieDetails = resultData.data.second,
-                                    results = resultData.data.first
-                                )
-                            }
+                    val resultData = getMovieDetailsUseCase.invoke(
+                        params = Params(event.movieId, pagingConfig = pagingConfig())
+                    )
+                    when (resultData) {
+                        is ResultData.Success -> {
+                            uiState = uiState.copy(
+                                isLoading = false,
+                                movieDetails = resultData.data.second,
+                                results = resultData.data.first
+                            )
+                        }
 
-                            is ResultData.Failure -> {
-                                uiState = uiState.copy(
-                                    isLoading = false,
-                                    error = resultData.exception.message.toString()
-                                )
-                                UtilFunctions.logError("MovieDetailViewModelError", "event: ${resultData.exception.message}")
-                            }
+                        is ResultData.Failure -> {
+                            uiState = uiState.copy(
+                                isLoading = false,
+                                error = resultData.exception.message.toString()
+                            )
+                            UtilFunctions.logError("MovieDetailViewModelError", "event: ${resultData.exception.message}")
+                        }
 
-                            is ResultData.Loading -> {
-                                uiState = uiState.copy(isLoading = true)
-                            }
+                        is ResultData.Loading -> {
+                            uiState = uiState.copy(isLoading = true)
                         }
                     }
                 }
@@ -164,4 +164,9 @@ class MovieDetailViewModel @Inject constructor(
             }
         }
     }
+
+    private fun pagingConfig() = PagingConfig(
+        pageSize = 20,
+        initialLoadSize = 20
+    )
 }

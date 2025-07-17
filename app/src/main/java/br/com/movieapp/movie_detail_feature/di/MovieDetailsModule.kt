@@ -6,7 +6,7 @@ import br.com.movieapp.movie_detail_feature.data.source.MovieDetailsRemoteDataSo
 import br.com.movieapp.movie_detail_feature.domain.repository.MovieDetailsRepository
 import br.com.movieapp.movie_detail_feature.domain.source.MovieDetailsRemoteDataSource
 import br.com.movieapp.movie_detail_feature.domain.usecase.GetMovieDetailsUseCase
-import br.com.movieapp.movie_detail_feature.domain.usecase.GetMovieUseCaseImpl
+import br.com.movieapp.movie_detail_feature.domain.usecase.GetMovieDetailsUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,5 +27,5 @@ object MovieDetailsModule {
 
     @Provides
     @Singleton
-    fun provideGetMovieDetailsUseCase(repository: MovieDetailsRepository): GetMovieDetailsUseCase = GetMovieUseCaseImpl(repository)
+    fun provideGetMovieDetailsUseCase(repository: MovieDetailsRepository): GetMovieDetailsUseCase = GetMovieDetailsUseCaseImpl(repository)
 }
